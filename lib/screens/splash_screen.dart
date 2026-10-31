@@ -58,17 +58,17 @@ class _SplashScreenState extends State<SplashScreen> {
                     shape: BoxShape.circle,
                     color: const Color(0xFF141937),
                     border: Border.all(
-                      color: const Color(0xFF43497C).withOpacity(0.5),
+                      color: const Color(0xFF43497C).withValues(alpha: 0.5),
                       width: 1.5,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF4F46E5).withOpacity(0.35),
+                        color: const Color(0xFF4F46E5).withValues(alpha: 0.35),
                         blurRadius: 40,
                         spreadRadius: 8,
                       ),
                       BoxShadow(
-                        color: const Color(0xFF38BDF8).withOpacity(0.2),
+                        color: const Color(0xFF38BDF8).withValues(alpha: 0.2),
                         blurRadius: 20,
                         spreadRadius: 2,
                       ),

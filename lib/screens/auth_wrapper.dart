@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' show User;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/auth_controller.dart';
@@ -52,7 +53,7 @@ class AuthWrapper extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(
-                      Icons.error_outline_rounded,
+                      CupertinoIcons.exclamationmark_circle,
                       color: AppColors.error,
                       size: 48,
                     ),

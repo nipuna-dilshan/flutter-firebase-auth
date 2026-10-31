@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
@@ -107,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   IconButton(
                     icon: const Icon(
-                      Icons.logout_rounded,
+                      CupertinoIcons.square_arrow_right,
                       color: AppColors.primaryText,
                       size: 24,
                     ),
@@ -128,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primaryPurple.withOpacity(0.35),
+                      color: AppColors.primaryPurple.withValues(alpha: 0.35),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -151,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       email,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white.withOpacity(0.85),
+                        color: Colors.white.withValues(alpha: 0.85),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -161,10 +162,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         vertical: 5,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.18),
+                        color: Colors.white.withValues(alpha: 0.18),
                         borderRadius: BorderRadius.circular(6),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.35),
+                          color: Colors.white.withValues(alpha: 0.35),
                           width: 1,
                         ),
                       ),
@@ -189,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: _ActivityCard(
-                      icon: Icons.bar_chart_rounded,
+                      icon: CupertinoIcons.chart_bar_alt_fill,
                       iconColor: AppColors.analyticsIcon,
                       iconBgColor: AppColors.analyticsBg,
                       title: 'Analytics',
@@ -199,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: _ActivityCard(
-                      icon: Icons.cloud_done_rounded,
+                      icon: CupertinoIcons.cloud_download_fill,
                       iconColor: AppColors.databaseIcon,
                       iconBgColor: AppColors.databaseBg,
                       title: 'Database',
@@ -216,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: _ActivityCard(
-                      icon: Icons.shield_outlined,
+                      icon: CupertinoIcons.shield,
                       iconColor: AppColors.securityIcon,
                       iconBgColor: AppColors.securityBg,
                       title: 'Security',
@@ -226,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: _ActivityCard(
-                      icon: Icons.settings_suggest_rounded,
+                      icon: CupertinoIcons.gear_alt_fill,
                       iconColor: AppColors.servicesIcon,
                       iconBgColor: AppColors.servicesBg,
                       title: 'Services',
@@ -258,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF634CF2).withOpacity(0.42),
+              color: const Color(0xFF634CF2).withValues(alpha: 0.42),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),
@@ -286,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: const Center(
               child: Icon(
-                Icons.add_rounded,
+                CupertinoIcons.add,
                 color: Colors.white,
                 size: 32,
               ),
@@ -316,12 +317,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   _buildNavItem(
                     index: 0,
-                    icon: Icons.home_rounded,
+                    icon: CupertinoIcons.house_fill,
                     label: 'Home',
                   ),
                   _buildNavItem(
                     index: 1,
-                    icon: Icons.swap_horiz_rounded,
+                    icon: CupertinoIcons.arrow_right_arrow_left,
                     label: 'Activity',
                   ),
                 ],
@@ -338,12 +339,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   _buildNavItem(
                     index: 2,
-                    icon: Icons.pie_chart_rounded,
+                    icon: CupertinoIcons.chart_pie_fill,
                     label: 'Analytics',
                   ),
                   _buildNavItem(
                     index: 3,
-                    icon: Icons.person_rounded,
+                    icon: CupertinoIcons.person_fill,
                     label: 'Profile',
                   ),
                 ],
@@ -428,7 +429,7 @@ class _ActivityCard extends StatelessWidget {
         border: Border.all(color: AppColors.cardBorder, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/custom_button.dart';
@@ -80,12 +81,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       width: 64,
                       height: 64,
                       decoration: BoxDecoration(
-                        color: AppColors.secondaryPurple.withOpacity(0.1),
+                        color: AppColors.secondaryPurple.withValues(alpha: 0.1),
                         shape: BoxShape.circle,
                       ),
                       child: const Center(
                         child: Icon(
-                          Icons.lock_reset_rounded,
+                          CupertinoIcons.lock_shield,
                           color: AppColors.primaryPurple,
                           size: 32,
                         ),
@@ -130,7 +131,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.done,
-                    prefixIcon: Icons.mail_outline_rounded,
+                    prefixIcon: CupertinoIcons.mail,
                     onFieldSubmitted: (_) => _handleResetPassword(),
                     validator: Validators.validateEmail,
                   ),
@@ -155,7 +156,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       onPressed: isLoading
                           ? null
                           : () => Navigator.of(context).pop(),
-                      icon: const Icon(Icons.arrow_back_rounded, size: 16),
+                      icon: const Icon(CupertinoIcons.arrow_left, size: 16),
                       label: const Text(
                         'Back to Sign In',
                         style: TextStyle(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/custom_button.dart';
@@ -118,7 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _fullNameController,
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
-                    prefixIcon: Icons.person_outline_rounded,
+                    prefixIcon: CupertinoIcons.person,
                     validator: Validators.validateFullName,
                   ),
 
@@ -131,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
-                    prefixIcon: Icons.mail_outline_rounded,
+                    prefixIcon: CupertinoIcons.mail,
                     validator: Validators.validateEmail,
                   ),
 
@@ -144,12 +145,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     textInputAction: TextInputAction.next,
-                    prefixIcon: Icons.lock_outline_rounded,
+                    prefixIcon: CupertinoIcons.lock,
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
+                            ? CupertinoIcons.eye_slash
+                            : CupertinoIcons.eye,
                         color: AppColors.secondaryText,
                         size: 20,
                       ),
@@ -171,13 +172,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _confirmPasswordController,
                     obscureText: _obscureConfirmPassword,
                     textInputAction: TextInputAction.done,
-                    prefixIcon: Icons.lock_outline_rounded,
+                    prefixIcon: CupertinoIcons.lock,
                     onFieldSubmitted: (_) => _handleSignUp(),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureConfirmPassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
+                            ? CupertinoIcons.eye_slash
+                            : CupertinoIcons.eye,
                         color: AppColors.secondaryText,
                         size: 20,
                       ),

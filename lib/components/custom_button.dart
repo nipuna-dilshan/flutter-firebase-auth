@@ -29,11 +29,11 @@ class CustomButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
         gradient: canPress ? AppColors.buttonGradient : null,
-        color: canPress ? null : AppColors.primaryPurple.withOpacity(0.6),
+        color: canPress ? null : AppColors.primaryPurple.withValues(alpha: 0.6),
         boxShadow: canPress
             ? [
                 BoxShadow(
-                  color: AppColors.primaryPurple.withOpacity(0.28),
+                  color: AppColors.primaryPurple.withValues(alpha: 0.28),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
@@ -10,7 +11,7 @@ class SnackBarHelper {
       context: context,
       message: message,
       backgroundColor: AppColors.success,
-      icon: Icons.check_circle_outline_rounded,
+      icon: CupertinoIcons.checkmark_circle,
     );
   }
 
@@ -19,7 +20,7 @@ class SnackBarHelper {
       context: context,
       message: message,
       backgroundColor: AppColors.error,
-      icon: Icons.error_outline_rounded,
+      icon: CupertinoIcons.exclamationmark_circle,
     );
   }
 
@@ -28,7 +29,7 @@ class SnackBarHelper {
       context: context,
       message: message,
       backgroundColor: AppColors.darkNavy,
-      icon: Icons.info_outline_rounded,
+      icon: CupertinoIcons.info_circle,
     );
   }
 
