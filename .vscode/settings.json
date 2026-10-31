@@ -1,0 +1,7 @@
+{
+  "git.repositoryScanMaxDepth": 1,
+  "git.autoRepositoryDetection": false,
+  "git.ignoredRepositories": [
+    "build"
+  ]
+}
