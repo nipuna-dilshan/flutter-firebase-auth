@@ -3,13 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/auth_controller.dart';
-//import '../providers/auth_provider.dart';
 import '../utils/app_colors.dart';
 import 'home_screen.dart';
 import 'signin_screen.dart';
 
 /// Central reactive authentication gateway.
-/// Uses StreamBuilder<User?> to switch automatically between SignInScreen
 /// and HomeScreen without manual navigation routes.
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
@@ -18,7 +16,8 @@ class AuthWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     // Access AuthController for Firebase operations, with safe fallback
     final authController =
-        Provider.of<AuthController?>(context, listen: false) ?? AuthController();
+        Provider.of<AuthController?>(context, listen: false) ??
+        AuthController();
 
     return StreamBuilder<User?>(
       stream: authController.authStateChanges,
