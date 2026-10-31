@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/custom_button.dart';
@@ -87,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.secondaryPurple.withOpacity(0.35),
+                            color: AppColors.secondaryPurple.withValues(alpha: 0.35),
                             blurRadius: 14,
                             offset: const Offset(0, 4),
                           ),
@@ -138,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
-                    prefixIcon: Icons.mail_outline_rounded,
+                    prefixIcon: CupertinoIcons.mail,
                     validator: Validators.validateEmail,
                   ),
 
@@ -151,13 +152,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     textInputAction: TextInputAction.done,
-                    prefixIcon: Icons.lock_outline_rounded,
+                    prefixIcon: CupertinoIcons.lock,
                     onFieldSubmitted: (_) => _handleSignIn(),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
+                            ? CupertinoIcons.eye_slash
+                            : CupertinoIcons.eye,
                         color: AppColors.secondaryText,
                         size: 20,
                       ),
