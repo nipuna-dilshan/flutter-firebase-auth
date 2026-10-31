@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "211449178880",
+    "project_id": "signin-project-47b6f",
+    "storage_bucket": "signin-project-47b6f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211449178880:android:c3ffba41477537ddf9a1e5",
+        "android_client_info": {
+          "package_name": "com.example.email_signin_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3TDmHTOmPgmoCkB03LeVV0_3R6rAenbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
