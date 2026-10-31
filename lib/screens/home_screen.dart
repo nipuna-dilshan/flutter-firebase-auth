@@ -3,9 +3,17 @@ import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../utils/app_colors.dart';
 
-/// Home Dashboard screen matching the NEXUS design specification.
-class HomeScreen extends StatelessWidget {
+/// Home Dashboard screen matching the NEXUS design specification,
+/// featuring a modern notched bottom navigation bar with elevated center action button.
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
 
   Future<void> _handleLogout(BuildContext context) async {
     final confirmed = await showDialog<bool>(
@@ -59,8 +67,6 @@ class HomeScreen extends StatelessWidget {
     );
 
     if (confirmed == true && context.mounted) {
-      // Calling signOut triggers authStateChanges which automatically
-      // prompts AuthWrapper to render SignInScreen.
       await context.read<AuthProvider>().signOut();
     }
   }
@@ -73,10 +79,10 @@ class HomeScreen extends StatelessWidget {
     final displayName = (user?.displayName != null &&
             user!.displayName!.trim().isNotEmpty)
         ? user.displayName!
-        : 'John Doe';
+        : 'nipuna dilshan';
     final email = (user?.email != null && user!.email!.trim().isNotEmpty)
         ? user.email!
-        : 'name@example.com';
+        : 'nipund001@gmail.com';
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -230,9 +236,164 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 32),
             ],
           ),
+        ),
+      ),
+
+      // Center Elevated Action Button matching the requested design
+      floatingActionButton: Container(
+        width: 58,
+        height: 58,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF634CF2),
+              Color(0xFF4937B8),
+            ],
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF634CF2).withOpacity(0.42),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            customBorder: const CircleBorder(),
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text(
+                    'Quick action clicked',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  backgroundColor: AppColors.darkNavy,
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+            },
+            child: const Center(
+              child: Icon(
+                Icons.add_rounded,
+                color: Colors.white,
+                size: 32,
+              ),
+            ),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+      // Notched bottom navigation bar matching the requested layout & color scheme
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 9.0,
+        color: AppColors.cardSurface,
+        elevation: 12,
+        surfaceTintColor: Colors.transparent,
+        clipBehavior: Clip.antiAlias,
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        height: 66,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Left Group: Home & Activity
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildNavItem(
+                    index: 0,
+                    icon: Icons.home_rounded,
+                    label: 'Home',
+                  ),
+                  _buildNavItem(
+                    index: 1,
+                    icon: Icons.swap_horiz_rounded,
+                    label: 'Activity',
+                  ),
+                ],
+              ),
+            ),
+
+            // Spacer for center Floating Action Button
+            const SizedBox(width: 48),
+
+            // Right Group: Analytics & Profile
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildNavItem(
+                    index: 2,
+                    icon: Icons.pie_chart_rounded,
+                    label: 'Analytics',
+                  ),
+                  _buildNavItem(
+                    index: 3,
+                    icon: Icons.person_rounded,
+                    label: 'Profile',
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Interactive navigation bar item with smooth active color matching NEXUS purple
+  Widget _buildNavItem({
+    required int index,
+    required IconData icon,
+    required String label,
+  }) {
+    final isSelected = _selectedIndex == index;
+    final activeColor = const Color(0xFF634CF2);
+    final inactiveColor = const Color(0xFF9CA3AF);
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: () {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 24,
+              color: isSelected ? activeColor : inactiveColor,
+            ),
+            const SizedBox(height: 3),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                color: isSelected ? activeColor : inactiveColor,
+                letterSpacing: -0.2,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -312,4 +473,3 @@ class _ActivityCard extends StatelessWidget {
     );
   }
 }
-
