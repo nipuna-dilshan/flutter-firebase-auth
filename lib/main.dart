@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/auth_controller.dart';
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
+import 'screens/auth_wrapper.dart';
 import 'screens/splash_screen.dart';
 import 'utils/app_colors.dart';
 
@@ -26,6 +28,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // Check if first launch after install
+  final prefs = await SharedPreferences.getInstance();
+  final bool isFirstLaunch = prefs.getBool('is_first_launch') ?? true;
+
   final authController = AuthController();
 
   runApp(
@@ -36,18 +42,20 @@ void main() async {
           create: (_) => AuthProvider(authController: authController),
         ),
       ],
-      child: const NexusApp(),
+      child: NexusApp(isFirstLaunch: isFirstLaunch),
     ),
   );
 }
 
 class NexusApp extends StatelessWidget {
-  const NexusApp({super.key});
+  final bool isFirstLaunch;
+
+  const NexusApp({super.key, required this.isFirstLaunch});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NEXUS Auth',
+      title: 'Email Sign-In',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -71,7 +79,9 @@ class NexusApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SplashScreen(),
+      // Only show SplashScreen on first launch after installation.
+      // Subsequently, proceed straight to AuthWrapper (Dashboard or Sign In).
+      home: isFirstLaunch ? const SplashScreen() : const AuthWrapper(),
     );
   }
 }

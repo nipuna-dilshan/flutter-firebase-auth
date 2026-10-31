@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/app_colors.dart';
 import 'auth_wrapper.dart';
 
@@ -21,6 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _navigateToNext() async {
     await Future.delayed(const Duration(milliseconds: 2000));
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('is_first_launch', false);
+
     if (!mounted) return;
 
     Navigator.of(context).pushReplacement(
